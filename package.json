@@ -1,0 +1,11 @@
+{
+  "name": "bi-dashboard-frontend",
+  "version": "1.0.0",
+  "description": "BI Dashboard Front-End Structure for Back-End Integration",
+  "scripts": {
+    "dev": "npx http-server -p 3000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

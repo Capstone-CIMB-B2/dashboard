@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BI Dashboard - Ultra Clean Layout</title>
+    <!-- CSS Library -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row px-2">
+            <div class="col-12 p-0">
+                <div class="pill-track">
+                    <button class="pill-item active" data-segment="semua">Semua</button>
+                    <button class="pill-item" data-segment="gen-z">Mahasiswa / Gen Z</button>
+                    <button class="pill-item" data-segment="young-prof">Young Professional</button>
+                    <button class="pill-item" data-segment="est-prof">Established Professional</button>
+                    <button class="pill-item" data-segment="freelance">Freelance</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md">
+                <div class="dashboard-card justify-content-between">
+                    <div>
+                        <div class="card-header-title mb-2">CTA Keseluruhan</div>
+                        <div class="kpi-value" id="kpi-cta-value">24%</div>
+                    </div>
+                    <div class="kpi-meta" id="kpi-cta-meta" style="color: #28a745;">+3% VS Kemarin</div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="dashboard-card justify-content-between">
+                    <div>
+                        <div class="card-header-title mb-2">Conversion Rate</div>
+                        <div class="kpi-value" id="kpi-conversion-value">24%</div>
+                    </div>
+                    <div class="kpi-meta" id="kpi-conversion-meta">CTA klik / Insight klik</div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="dashboard-card justify-content-between">
+                    <div>
+                        <div class="card-header-title mb-2">Engagement Rate</div>
+                        <div class="kpi-value" id="kpi-engagement-value">24%</div>
+                    </div>
+                    <div class="kpi-meta" id="kpi-engagement-meta">Total Interaksi / Total User</div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="dashboard-card justify-content-between">
+                    <div>
+                        <div class="card-header-title mb-2">Consent Rate</div>
+                        <div class="kpi-value" id="kpi-consent-value">68%</div>
+                    </div>
+                    <div class="kpi-meta" id="kpi-consent-meta">68 dari 100 user aktif</div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="dashboard-card justify-content-between">
+                    <div>
+                        <div class="card-header-title mb-2">Total Pengguna</div>
+                        <div class="kpi-value" id="kpi-users-value">100</div>
+                    </div>
+                    <div class="kpi-meta" id="kpi-users-meta">Sintetis aktif hari ini</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <div class="card-header-container">
+                        <div class="card-header-title">CTR per tipe konten</div>
+                    </div>
+                    <div class="container-chart-md">
+                        <canvas id="chart-ctr-per-tipe"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <div class="card-header-container">
+                        <div class="card-header-title">Tren Engagement Harian</div>
+                    </div>
+                    <div class="container-chart-md">
+                        <canvas id="chart-tren-harian"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="dashboard-card">
+                    <div class="card-header-container">
+                        <div class="card-header-title">Segment Performance - CTR per kategori fitur</div>
+                    </div>
+                    <div class="container-chart-lg">
+                        <canvas id="chart-segment-perf"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <div class="card-header-container">
+                        <div class="card-header-title">Distribusi pengguna per segmen</div>
+                    </div>
+                    <div class="container-chart-sm">
+                        <canvas id="chart-distribusi"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="dashboard-card">
+                    <div class="card-header-container">
+                        <div class="card-header-title">Feature usage rate</div>
+                    </div>
+                    <div class="container-chart-sm">
+                        <canvas id="chart-usage-rate"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="dashboard-card justify-content-start">
+                    <div class="card-header-title mb-3">Rekomendasi Strategis & Data Insight</div>
+                    <div>
+                        <div class="insight-section">
+                            <div class="insight-title">💡 Key Insights</div>
+                            <p class="insight-text" id="insight-key-text">
+                                Konten berjenis <strong>Banner (26%)</strong> dan <strong>Insight (22%)</strong>
+                                menghasilkan CTR tertinggi. Namun, konversi ke penggunaan fitur riil seperti
+                                <strong>Investasi dan Tagihan</strong> masih berada di posisi terendah (&lt;30%),
+                                berbanding terbalik dengan utilitas harian seperti QRIS dan Transfer yang melesat
+                                tinggi.
+                            </p>
+                        </div>
+
+                        <div class="recommendation-section">
+                            <div class="insight-title">🚀 Actionable Recommendations</div>
+                            <p class="insight-text" id="insight-rec-text">
+                                1. <strong>Cross-Selling via Banner:</strong> Manfaatkan tingginya CTR Banner untuk
+                                mempromosikan fitur Investasi dan Tabungan langsung ke segmen <em>Young
+                                Professional</em>.<br>
+                                2. <strong>Incentivized Engagement:</strong> Buat program loyalitas pada fitur Tagihan
+                                guna mendongkrak <em>feature usage rate</em> yang saat ini stagnan di angka 33%.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Application Logic -->
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
