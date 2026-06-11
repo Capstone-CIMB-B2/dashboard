@@ -1,6 +1,6 @@
 /**
  * Auth Controller
- * File ini menangani logika antarmuka halaman login (Auth.html)
+ * File ini menangani logika antarmuka halaman login (auth.html)
  * dan menghubungkannya dengan API Service.
  */
 
@@ -8,7 +8,7 @@ import { loginAdmin, isAuthenticated } from './api.js';
 
 // Jalankan pemeriksaan awal: jika sudah terautentikasi, langsung arahkan ke dashboard
 if (isAuthenticated()) {
-    window.location.replace('Index.html');
+    window.location.replace('index.html');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             await loginAdmin(username, password);
             
             // 4. Sukses: Alihkan ke dashboard utama
-            window.location.replace('Index.html');
+            window.location.replace('index.html');
         } catch (error) {
             // 5. Gagal: Tampilkan pesan error
             showError(error.message || 'Gagal masuk ke sistem. Silakan coba lagi.');
