@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
             logoutAdmin();
-            window.location.replace('Auth.html');
+            window.location.replace('auth.html');
         });
     }
 

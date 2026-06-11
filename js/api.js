@@ -580,7 +580,7 @@ export async function fetchDashboardData(segment) {
             
             if (response.status === 401) {
                 logoutAdmin();
-                window.location.replace('Auth.html');
+                window.location.replace('auth.html');
                 throw new Error("Sesi Anda telah berakhir. Silakan masuk kembali.");
             }
             
