@@ -194,3 +194,19 @@ body {
     line-height: 1.6;
 }
 
+/* Penyelarasan Gaya Navigasi Atas Dashboard */
+.dashboard-navbar {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-logout:hover {
+    background-color: var(--card-tersier) !important;
+    color: var(--bg-primary) !important;
+    border-color: var(--card-tersier) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+

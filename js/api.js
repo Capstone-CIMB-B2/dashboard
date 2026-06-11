@@ -270,3 +270,59 @@ export async function fetchDashboardData(segment) {
         }
     }
 }
+
+// 4. FUNGSI AUTENTIKASI ADMIN
+export async function loginAdmin(username, password) {
+    if (USE_MOCK) {
+        // Simulasi delay jaringan (800ms) agar terasa seperti memanggil API nyata
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (username === 'admin' && password === 'admin123') {
+                    const dummyToken = 'dummy-jwt-token-xyz123';
+                    const userData = { username: 'admin', role: 'Super Admin', name: 'Admin CIMB' };
+                    localStorage.setItem('adminToken', dummyToken);
+                    localStorage.setItem('adminUser', JSON.stringify(userData));
+                    resolve({ token: dummyToken, user: userData });
+                } else {
+                    reject(new Error('ID Pengguna atau Kata Sandi salah.'));
+                }
+            }, 800);
+        });
+    } else {
+        // Pemanggilan fetch API nyata ke Back-End untuk login
+        try {
+            const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+            if (!response.ok) {
+                const errData = await response.json().catch(() => ({}));
+                throw new Error(errData.message || 'ID Pengguna atau Kata Sandi salah.');
+            }
+            const data = await response.json();
+            if (data.token) {
+                localStorage.setItem('adminToken', data.token);
+                if (data.user) {
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+                }
+            }
+            return data;
+        } catch (error) {
+            console.error("Gagal melakukan login ke API Back-End:", error);
+            throw error;
+        }
+    }
+}
+
+export function logoutAdmin() {
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminUser');
+}
+
+export function isAuthenticated() {
+    return localStorage.getItem('adminToken') !== null;
+}
+

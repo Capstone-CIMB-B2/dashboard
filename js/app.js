@@ -4,7 +4,7 @@
  * mengikat event listener, mengambil data, dan memperbarui DOM.
  */
 
-import { fetchDashboardData } from './api.js';
+import { fetchDashboardData, logoutAdmin } from './api.js';
 import { initCharts, updateCharts } from './charts.js';
 
 // Objek DOM cache untuk performa penulisan yang cepat
@@ -146,6 +146,28 @@ function bindEvents() {
 document.addEventListener('DOMContentLoaded', async () => {
     cacheDOM();
     bindEvents();
+    
+    // Hubungkan tombol Logout
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            logoutAdmin();
+            window.location.replace('Auth.html');
+        });
+    }
+
+    // Set nama & peran admin secara dinamis dari localStorage
+    const adminDisplayName = document.getElementById('admin-display-name');
+    const adminDisplayRole = document.getElementById('admin-display-role');
+    try {
+        const user = JSON.parse(localStorage.getItem('adminUser'));
+        if (user) {
+            if (adminDisplayName) adminDisplayName.textContent = user.name || user.username;
+            if (adminDisplayRole) adminDisplayRole.textContent = user.role || 'Admin';
+        }
+    } catch (e) {
+        console.error("Gagal membaca sesi profil admin:", e);
+    }
     
     try {
         // Ambil data default ("semua")
